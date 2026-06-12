@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> مرسين زراعات</title>
+    <meta name="description" content="مشتل مرسين زراعات هو وجهتكم الأولى لكل ما يخص عالم الزراعة والنباتات. نقدم لكم أفضل أنواع نباتات الزينة، الأشجار المثمرة، والزهور بجودة عالية.">
+<meta name="keywords" content="مشتل مرسين, زراعات, نباتات زينة, أشجار مثمرة, ورود, مستلزمات زراعية">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- التنبيهات الجذابة -->
+    <div id="toast-container"></div>
+
+    <!-- شريط البحث العلوي واللوجو -->
+    <header class="main-header">
+        <div class="header-top">
+            <h1 class="logo"><i class="fa-solid fa-seedling"></i> مرسين زراعات </h1>
+            <button id="theme-toggle" class="theme-btn"><i class="fa-solid fa-moon"></i></button>
+        </div>
+        <div class="search-bar-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="search-input" placeholder="ابحث عن نباتات، ورود، مستلزمات...">
+        </div>
+    </header>
+
+    <!-- شريط الفئات الأفقي القابل للتمرير -->
+    <nav class="categories-bar">
+        <button class="category-btn active" data-category="all">الكل</button>
+        <button class="category-btn" data-category="نباتات زينة">نباتات زينة</button>
+        <button class="category-btn" data-category="أشجار مثمرة">أشجار مثمرة</button>
+        <button class="category-btn" data-category="ورود">ورود</button>
+        <button class="category-btn" data-category="مستلزمات زراعية">مستلزمات زراعية</button>
+        <button class="category-btn" data-category="عروض خاصة">عروض خاصة <i class="fa-solid fa-fire text-danger"></i></button>
+    </nav>
+
+    <!-- المحتوى الرئيسي للموقع -->
+    <main class="main-content">
+
+        <!-- قسم الرئيسية (عرض المنتجات) -->
+        <section id="section-home" class="app-section active">
+            <h2 class="section-title">المنتجات المتاحة</h2>
+            <div id="products-grid" class="products-grid">
+                <div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل ...</div>
+            </div>
+        </section>
+
+        <!-- قسم المفضلة -->
+        <section id="section-favorites" class="app-section">
+            <h2 class="section-title"><i class="fa-solid fa-heart"></i> منتجاتي المفضلة</h2>
+            <div id="favorites-grid" class="products-grid"></div>
+        </section>
+
+        <!-- قسم الفئات -->
+        <section id="section-categories" class="app-section">
+            <h2 class="section-title">تصفح حسب الفئة</h2>
+            <div class="categories-grid">
+                <div class="cat-card" data-cat="نباتات زينة">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h3>نباتات زينة</h3>
+                </div>
+                <div class="cat-card" data-cat="أشجار مثمرة">
+                    <i class="fa-solid fa-tree"></i>
+                    <h3>أشجار مثمرة</h3>
+                </div>
+                <div class="cat-card" data-cat="ورود">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>ورود</h3>
+                </div>
+                <div class="cat-card" data-cat="مستلزمات زراعية">
+                    <i class="fa-solid fa-trowel"></i>
+                    <h3>مستلزمات زراعية</h3>
+                </div>
+                <div class="cat-card" data-cat="عروض خاصة">
+                    <i class="fa-solid fa-percent"></i>
+                    <h3>عروض خاصة</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم تواصل معنا + من نحن -->
+        <section id="section-contact" class="app-section">
+            <div class="about-us-card">
+                <h3><i class="fa-solid fa-circle-info"></i> من نحن؟</h3>
+                <p>مشتل "مرسين" هو وجهتكم الأولى لكل ما يخص عالم الزراعة والنباتات. نقدم لكم أفضل أنواع نباتات الزينة، الأشجار المثمرة، الزهور الساحرة، وكافة المستلزمات الزراعية بجودة عالية.</p>
+            </div>
+            
+            <h2 class="section-title">تواصل معنا مباشر</h2>
+            <div class="contact-buttons">
+                <a href="https://wa.me/905355252483lank" class="contact-btn whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                </a>
+                <a href="tel:+963984727823" class="contact-btn phone">
+                    <i class="fa-solid fa-phone"></i> او عبر SMS
+                </a>
+            </div>
+        </section>
+
+        <!-- قسم لوحة تحكم الأدمن المستقل تماماً -->
+        <section id="section-admin" class="app-section">
+            <div id="admin-container" class="admin-card">
+                <h3><i class="fa-solid fa-sliders"></i> لوحة إدارة مشتل مرسين</h3>
+                <p class="admin-subtitle">إضافة وتعديل المنتجات والعروض بكل سهولة من الجوال</p>
+                
+                <form id="admin-product-form">
+                    <input type="hidden" id="edit-product-id">
+                    
+                    <div class="form-group">
+                        <label>اسم المنتج</label>
+                        <input type="text" id="prod-title" required placeholder="مثال: نبتة البوتس">
+                    </div>
+                    <div class="form-group">
+                        <label>السعر (L.T)</label>
+                        <input type="number" id="prod-price" required placeholder="مثال: 25000">
+                    </div>
+                    <div class="form-group">
+                        <label>الفئة</label>
+                        <select id="prod-category" required>
+                            <option value="نباتات زينة">نباتات زينة</option>
+                            <option value="أشجار مثمرة">أشجار مثمرة</option>
+                            <option value="ورود">ورود</option>
+                            <option value="مستلزمات زراعية">مستلزمات زراعية</option>
+                            <option value="عروض خاصة">عروض خاصة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>الوصف</label>
+                        <textarea id="prod-desc" rows="3" placeholder="أكتب وصفًا موجزًا للمنتج"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>صورة المنتج</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="prod-image" accept="image/*">
+                        </div>
+                        <p class="file-note">اتركه فارغاً عند التعديل إذا لم ترد تغيير الصورة.</p>
+                    </div>
+                    <div class="admin-form-btns">
+                        <button type="submit" id="admin-submit-btn" class="btn-admin-submit">إضافة المنتج للمحل</button>
+                        <button type="button" id="admin-cancel-edit" class="btn-secondary hidden">إلغاء التعديل</button>
+                    </div>
+                </form>
+
+                <hr class="section-divider">
+                <h4>إدارة المنتجات الحالية (<span id="admin-prod-count">0</span>)</h4>
+                <div id="admin-products-list" class="admin-products-list"></div>
+            </div>
+        </section>
+
+        <!-- قسم حسابي -->
+        <section id="section-profile" class="app-section">
+            
+            <!-- نموذج تسجيل الدخول / إنشاء الحساب -->
+            <div id="auth-container" class="auth-card">
+                <div class="auth-tabs">
+                    <button id="tab-login" class="auth-tab active">تسجيل الدخول</button>
+                    <button id="tab-register" class="auth-tab">إنشاء حساب جديد</button>
+                </div>
+
+                <form id="auth-form">
+                    <div class="form-group id-register-only hidden">
+                        <label>اسم المستخدم</label>
+                        <input type="text" id="auth-username" placeholder="أدخل اسمك الكامل">
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" id="auth-email" required placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" id="auth-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" id="auth-submit-btn" class="btn-primary">دخول</button>
+                </form>
+            </div>
+
+            <!-- لوحة تحكم المستخدم المسجل (الملف الشخصي والإعدادات) -->
+            <div id="user-profile-container" class="profile-card hidden">
+                <div class="profile-header">
+                    <div class="user-avatar"><i class="fa-solid fa-user-check"></i></div>
+                    <h3 id="user-display-name">مرحباً بك</h3>
+                    <p id="user-display-email"></p>
+                    <span id="admin-badge" class="badge-admin hidden">حساب مدير (الأدمن)</span>
+                </div>
+
+                <div class="settings-section">
+                    <h4><i class="fa-solid fa-gear"></i> إعدادات الحساب</h4>
+                    <form id="update-profile-form">
+                        <div class="form-group">
+                            <label>تعديل اسم المستخدم</label>
+                            <input type="text" id="update-username" placeholder="الاسم الجديد">
+                        </div>
+                        <button type="submit" class="btn-secondary-sm">حفظ الاسم الجديد</button>
+                    </form>
+                    <hr>
+                    <form id="update-password-form">
+                        <div class="form-group">
+                            <label>تغيير كلمة المرور</label>
+                            <input type="password" id="update-password" required placeholder="كلمة المرور الجديدة">
+                        </div>
+                        <button type="submit" class="btn-secondary-sm">تحديث كلمة المرور</button>
+                    </form>
+                </div>
+
+                <button id="logout-btn" class="btn-danger-link"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- شريط التنقل السفلي الذكي والتكيفي للجوال -->
+    <footer class="bottom-nav">
+        <button class="nav-item active" data-target="section-home">
+            <i class="fa-solid fa-house"></i>
+            <span>الرئيسية</span>
+        </button>
+        <button class="nav-item" data-target="section-favorites">
+            <i class="fa-solid fa-heart"></i>
+            <span>المفضلة</span>
+        </button>
+        <button class="nav-item" data-target="section-categories">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>الفئات</span>
+        </button>
+        <button class="nav-item" data-target="section-contact">
+            <i class="fa-solid fa-address-book"></i>
+            <span>تواصل</span>
+        </button>
+        <!-- زر لوحة الأدمن - يظهر فقط عند دخول حساب الأدمن وقبل قسم حسابي -->
+        <button class="nav-item hidden" data-target="section-admin" id="nav-admin-btn" style="color: var(--danger);">
+            <i class="fa-solid fa-sliders"></i>
+            <span>الأدمن</span>
+        </button>
+        <button class="nav-item" data-target="section-profile" id="nav-profile-btn">
+            <i class="fa-solid fa-user"></i>
+            <span>حسابي</span>
+        </button>
+    </footer>
+
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

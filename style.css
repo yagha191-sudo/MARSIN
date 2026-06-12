@@ -1,0 +1,847 @@
+/* الألوان الأساسية للموقع - متجاوبة مع الثيمات */
+:root {
+    --bg-primary: #f4f7f5;
+    --bg-surface: #ffffff;
+    --text-main: #2d3a34;
+    --text-muted: #62756b;
+    --accent-color: #2e7d32; /* الأخضر النضِر */
+    --accent-hover: #1b5e20;
+    --border-color: #e0e6e2;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+    --toast-bg: #2e7d32;
+    --danger: #d32f2f;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #121814;
+    --bg-surface: #1a231e;
+    --text-main: #e8ece9;
+    --text-muted: #9bb0a5;
+    --accent-color: #4caf50;
+    --accent-hover: #81c784;
+    --border-color: #2c3931;
+    --shadow: 0 4px 16px rgba(0,0,0,0.3);
+    --toast-bg: #4caf50;
+}
+
+/* التنسيقات العامة للخطوط والهيكل */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    padding-bottom: 80px; /* لحماية المحتوى من الاختفاء خلف الشريط السفلي */
+    direction: rtl;
+}
+
+/* شريط التنبيهات */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 90%;
+    max-width: 400px;
+}
+.toast-msg {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    font-weight: 600;
+    animation: slideDown 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+}
+.toast-msg.error { background: var(--danger); }
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* الهيدر العلوي والبحث */
+.main-header {
+    background-color: var(--bg-surface);
+    padding: 15px 20px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+.theme-btn {
+    background: var(--bg-primary);
+    border: none;
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 100%;
+}
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+.search-input, .search-bar-container input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+}
+.search-bar-container input:focus {
+    border-color: var(--accent-color);
+}
+
+/* شريط الفئات الأفقي المرن */
+.categories-bar::-webkit-scrollbar {
+    display: none; /* إخفاء شريط السكرول للـ Chrome والـ Safari */
+}
+.category-btn {
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+.category-btn.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
+
+/* الأقسام والمحتوى العام */
+.main-content {
+    padding: 15px;
+}
+.app-section {
+    display: none !important;
+}
+
+.app-section.active {
+    display: block !important;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    border-right: 4px solid var(--accent-color);
+    padding-right: 10px;
+}
+
+
+/* شريط التنقل السفلي الثابت (مظهر التطبيقات النظيفة) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 65px;
+    background-color: var(--bg-surface);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+    z-index: 500;
+    border-top: 1px solid var(--border-color);
+}
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    width: 20%;
+    height: 100%;
+}
+.nav-item i {
+    font-size: 1.25rem;
+    margin-bottom: 3px;
+}
+.nav-item.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* صفحات تسجيل الدخول وبطاقات المستخدمين */
+.auth-card, .profile-card, .admin-card, .about-us-card {
+    background-color: var(--bg-surface);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+.auth-tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+.auth-tab.active {
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+/* شريط التنقل السفلي الثابت (مظهر التطبيقات النظيفة) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 65px;
+    background-color: var(--bg-surface);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+    z-index: 500;
+    border-top: 1px solid var(--border-color);
+}
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    width: 20%;
+    height: 100%;
+}
+.nav-item i {
+    font-size: 1.25rem;
+    margin-bottom: 3px;
+}
+.nav-item.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* صفحات تسجيل الدخول وبطاقات المستخدمين */
+.auth-card, .profile-card, .admin-card, .about-us-card {
+    background-color: var(--bg-surface);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+.auth-tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+.auth-tab.active {
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+}
+/* 1️⃣ ضبط شبكة المنتجات لتصبح عمودين متساويين تماماً في الجوال */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* يعرض منتجين بجانب بعض بشكل مربع */
+    gap: 12px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 600px) {
+    .products-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important; 
+    }
+}
+
+/* 2️⃣ ضبط بطاقة المنتج لتكون مربعة ومدمجة وتأخذ حجم المحتوى فقط */
+.product-card {
+    background-color: var(--bg-surface) !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    box-shadow: var(--shadow) !important;
+    border: 1px solid var(--border-color) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    height: auto !important; /* إلغاء الارتفاع الكامل المسبب للمط */
+    padding-bottom: 8px !important;
+}
+
+/* 3️⃣ جعل حاوية الصورة مربعة تماماً بنسبة 1:1 */
+.product-image-holder {
+    position: relative !important;
+    width: 100% !important;
+    padding-top: 100% !important; /* نسبة مربعة مثالية للصور */
+    background: #eef2ef !important;
+    height: 0 !important; /* تصفير الارتفاع الثابت ليعتمد على البادينج المربع */
+}
+
+.product-image-holder img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* يقص الصورة بذكاء لتملأ المربع */
+}
+
+/* 4️⃣ إخفاء الوصف والنصوص الإضافية (مثل نباتات زينة أو أي وصف تحت العنوان) */
+.prod-cat-tag,
+.product-desc {
+    display: none !important; /* يخفي التصنيف والوصف تماماً */
+}
+
+/* 5️⃣ تنسيق اسم المنتج وتوسيطه */
+.product-title {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: var(--text-main) !important;
+    line-height: 1.3 !important;
+    height: auto !important; /* يترك الاسم يأخذ مساحته الطبيعية */
+    overflow: hidden !important;
+    text-align: center !important; /* توسيط الاسم ليناسب الشكل المربع */
+    margin: 6px 4px 2px 4px !important;
+}
+
+/* 6️⃣ تنسيق السعر وتوسيطه */
+.product-price {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--accent-color) !important;
+    margin: 4px 0 !important;
+    text-align: center !important; /* توسيط السعر */
+    display: block !important;
+}
+
+/* 7️⃣ ضبط زر الواتساب ليصبح مدمجاً وأنيقاً أسفل المربع */
+.whatsapp-order-btn {
+    background-color: #25d366 !important;
+    color: #fff !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    margin: 6px 8px 0 8px !important; /* ترك مسافة صغيرة من الجوانب */
+}
+/* ==========================================================================
+   🛠️ تنسيق لوحة الإدارة والفورم (Admin Form & Control Panel) لجعلها فائقة الجمال
+   ========================================================================== */
+
+/* 1️⃣ تنسيق الصندوق الرئيسي (الكرت) */
+   .admin-card {
+    background-color: var(--bg-surface, #ffffff) !important;
+    padding: 24px !important;
+    border-radius: 20px !important; /* حواف دائرية ناعمة وعصرية */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important; /* ظل خفيف وراقي */
+    border: 1px solid var(--border-color, #eef2ef) !important;
+    max-width: 550px !important;
+    margin: 20px auto !important;
+    box-sizing: border-box !important;
+}
+
+/* 2️⃣ تنسيق العناوين داخل لوحة الإدارة */
+.admin-card h3, .admin-card h2, form h3, .section-title {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--text-main, #2d3a34) !important;
+    margin-bottom: 20px !important;
+    border-right: 4px solid var(--accent-color, #2e7d32) !important;
+    padding-right: 12px !important;
+}
+
+/* 3️⃣ تنسيق حقول الإدخال والقوائم المنسدلة (Inputs & Select) */
+.form-group input, 
+.form-group select, 
+.form-group textarea,
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+    border-radius: 12px !important; /* حواف دائرية ناعمة للحقول */
+    border: 1.5px solid var(--border-color, #e0e6e2) !important;
+    background-color: var(--bg-primary, #f4f7f5) !important;
+    color: var(--text-main, #2d3a34) !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    margin-bottom: 15px !important;
+}
+
+/* تأثير التحديد (Focus) عند الضغط على الحقل */
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus,
+form input:focus,
+form select:focus {
+    border-color: var(--accent-color, #2e7d32) !important;
+    background-color: var(--bg-surface, #ffffff) !important;
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1) !important; /* وهج أخضر خفيف */
+}
+
+/* 4️⃣ تنسيق حقل رفع الصورة (File Input) ليكون أنيقاً جداً */
+form input[type="file"] {
+    background: transparent !important;
+    border: 2px dashed var(--border-color, #e0e6e2) !important; /* إطار منقّط احترافي */
+    padding: 15px !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+}
+
+/* 5️⃣ تنسيق أزرار الأكشن (إضافة منتج للمحل / إلغاء التعديل) */
+/* زر الإضافة الرئيسي الأخضر */
+form button, 
+.admin-card button,
+input[type="submit"] {
+    background: linear-gradient(135deg, var(--accent-color, #2e7d32), #1b5e20) !important; /* تدرج لوني فخم */
+    color: #ffffff !important;
+    border: none !important;
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    display: block !important;
+    margin-top: 15px !important;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2) !important;
+    transition: all 0.2s ease !important;
+}
+
+form button:hover,
+input[type="submit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3) !important;
+}
+
+/* زر إلغاء التعديل أو الأزرار الثانوية لتظهر بجانب بعضها بشكل جميل إذا وجدت */
+form .btn-secondary, 
+form button + button,
+#cancel-edit-btn {
+    background: #e0e6e2 !important;
+    color: var(--text-main, #2d3a34) !important;
+    margin-top: 10px !important;
+    box-shadow: none !important;
+}
+form .btn-secondary:hover,
+form button + button:hover {
+    background: #d2dad5 !important;
+    transform: translateY(-2px) !important;
+}
+
+/* 6️⃣ تنسيق قسم إدارة المنتجات الحالية (البطاقة المصغرة لمنتجات الأدمن) */
+.admin-product-item {
+    background: var(--bg-surface, #ffffff) !important;
+    border: 1px solid var(--border-color, #e0e6e2) !important;
+    border-radius: 14px !important;
+    padding: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
+}
+
+/* أزرار الإجراءات داخل إدارة المنتجات (تعديل / حذف) */
+.admin-actions {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.admin-actions .btn-edit {
+    background: #3498db !important; /* اللون الأزرق للتعديل */
+    color: white !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 8px !important;
+}
+
+.admin-actions .btn-delete {
+    background: #e74c3c !important; /* اللون الأحمر للحذف */
+    color: white !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 8px !important;
+}
+/* ==========================================================================
+   🌿 شريط الفئات الأفقي الفاخر (Modern Categories Bar)
+   ========================================================================== */
+
+/* 1️⃣ الحاوية الأساسية للشريط الأفقي */
+.categories-bar {
+    display: flex !important;
+    gap: 12px !important;
+    padding: 16px 20px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important; /* إخفاء السكرول تماماً لمتصفح فايرفوكس */
+    scroll-behavior: smooth !important; /* حركة تنقل ناعمة بين الفئات */
+    -webkit-overflow-scrolling: touch !important; /* سحب سلس وسريع جداً على شاشات الجوال */
+}
+
+/* ==========================================================================
+   📦 تنسيق قسم الفئات إلى مربعات كروت فاخرة (Categories Section Grid)
+   ========================================================================== */
+
+/* 1️⃣ تحويل الحاوية المحيطة بالفئات إلى شبكة عرض متجاوبة ومتناسقة */
+.categories-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* كرتين متساويين بجانب بعض في الجوال */
+    gap: 16px !important;
+    padding: 10px 5px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+}
+
+@media (min-width: 768px) {
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* 4 مربعات متناسقة في الشاشات الكبيرة للكمبيوتر */
+        gap: 20px !important;
+    }
+}
+
+/* 2️⃣ تنسيق بطاقة الفئة المربعة (.cat-card) لجعلها فائقة الجمال */
+.cat-card {
+    background-color: var(--bg-surface, #ffffff) !important;
+    border: 1px solid var(--border-color, #e0e6e2) !important;
+    border-radius: 16px !important; /* حواف دائرية ناعمة وعصرية */
+    padding: 24px 15px !important; /* مساحة داخلية مريحة للضغط واللمس */
+    display: flex !important;
+    flex-direction: column !important; /* إجبار الأيقونة على البقاء فوق العنوان */
+    align-items: center !important; /* توسيط العناصر أفقياً */
+    justify-content: center !important; /* توسيط العناصر عمودياً */
+    text-align: center !important;
+    cursor: pointer !important;
+    box-shadow: var(--shadow, 0 4px 12px rgba(0,0,0,0.04)) !important; /* ظل خفيف وناعم */
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease !important;
+    min-height: 120px !important; /* إجبار جميع الكروت على أخذ مظهر مربع موحد */
+    box-sizing: border-box !important;
+}
+
+/* تأثير حركي ناعم عند تمرير الماوس أو اللمس بالأصبع */
+.cat-card:hover {
+    transform: translateY(-4px) !important; /* رفع الكرت للأعلى قليلاً */
+    box-shadow: 0 8px 24px rgba(46, 125, 50, 0.12) !important; /* زيادة قوة الظل الأخضر */
+    border-color: var(--accent-color, #2e7d32) !important; /* تلوين الحافة بالأخضر النضر */
+}
+
+/* 3️⃣ تنسيق الأيقونة العلوية الكبيرة داخل الكرت */
+.cat-card i {
+    font-size: 2rem !important; /* تكبير الأيقونة لتصبح بارزة */
+    color: var(--accent-color, #2e7d32) !important; /* لون أخضر جذاب مريح للعين */
+    margin-bottom: 12px !important; /* مسافة واضحة بين الأيقونة والاسم */
+    transition: transform 0.3s ease !important;
+}
+
+/* حركة تفاعلية ممتعة للأيقونة عند تمرير الماوس */
+.cat-card:hover i {
+    transform: scale(1.15) !important; /* تكبير الأيقونة قليلاً */
+}
+
+/* 4️⃣ تنسيق اسم الفئة (العنوان) أسفل الأيقونة */
+.cat-card h3 {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: var(--text-main, #2d3a34) !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+}
+
+/* 5️⃣ دعم الألوان المتناسقة التام في الوضع الليلي (Dark Mode) */
+[data-theme="dark"] .cat-card {
+    background-color: #1a231e !important;
+    border-color: #2c3931 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+}
+
+[data-theme="dark"] .cat-card h3 {
+    color: #e8ece9 !important;
+}
+
+[data-theme="dark"] .cat-card i {
+    color: #4caf50 !important; /* أخضر ساطع يناسب الثيم المظلم */
+}
+
+[data-theme="dark"] .cat-card:hover {
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.15) !important;
+}
+/* ==========================================================================
+   📞 تنسيق أزرار تواصل معنا (Modern Contact Buttons)
+   ========================================================================== */
+
+/* الحاوية التي تجمع الأزرار وترتبها عمودياً بمسافات متناسقة */
+.contact-buttons-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 15px 0 !important;
+    width: 100% !important;
+    max-width: 400px !important; /* حجم مثالي للأزرار وسط الشاشة */
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+/* التنسيق المشترك لكلا الزرين لإلغاء مظهر الرابط التقليدي */
+.contact-link-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 14px 20px !important;
+    border-radius: 12px !important; /* حواف دائرية عصرية ناعمة */
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important; /* إخفاء الخط الأزرق السفلي القديم */
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+}
+
+/* تأثير الارتفاع البسيط عند تمرير الماوس أو اللمس */
+.contact-link-btn:hover {
+    transform: translateY(-2px) !important;
+}
+.contact-link-btn:active {
+    transform: translateY(0) !important;
+}
+
+/* 🟢 تخصيص زر الواتساب (خلفية متدرجة خضراء احترافية) */
+.btn-contact-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.2) !important;
+}
+.btn-contact-whatsapp:hover {
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35) !important;
+}
+
+/* 🔵 تخصيص زر الاتصال الهاتفي (خلفية متدرجة زرقاء احترافية) */
+.btn-contact-phone {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(52, 152, 219, 0.2) !important;
+}
+.btn-contact-phone:hover {
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.35) !important;
+}
+
+/* تكبير حجم الأيقونات داخل الأزرار لتصبح بارزة */
+.contact-link-btn i {
+    font-size: 1.3rem !important;
+}
+/* ==========================================================================
+   📞 تنسيق أزرار تواصل معنا المباشرة بدون تعديل HTML
+   ========================================================================== */
+
+/* 1️⃣ تحويل منطقة روابط التواصل لترتيب الأزرار بشكل عمودي أنيق */
+#section-contact.active {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 15px !important;
+    max-width: 450px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+}
+
+/* 2️⃣ تحويل الروابط التقليدية الزرقاء إلى أزرار كبسولة فخمة وعريضة */
+#section-contact a,
+section[id*="contact"] a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 12px 20px !important;
+    border-radius: 12px !important; /* حواف دائرية ناعمة وعصرية */
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important; /* إخفاء الخط السفلي الأزرق القديم */
+    width: 100% !important; /* تجعل الزر ممتداً بكامل العرض المتناسق */
+    box-sizing: border-box !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* تأثير الارتفاع البسيط والبروز عند تمرير الماوس أو اللمس بالأصبع */
+#section-contact a:hover,
+section[id*="contact"] a:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* 3️⃣ استهداف زر الواتساب الأول (يحتوي على كلمة واتساب) وإعطائه التدرج الأخضر */
+#section-contact a[href*="wa.me"],
+#section-contact a[href*="whatsapp"] {
+    background: linear-gradient(135deg, #25D366, #128C7E) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.2) !important;
+}
+
+#section-contact a[href*="wa.me"]:hover,
+#section-contact a[href*="whatsapp"]:hover {
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35) !important;
+}
+
+/* 4️⃣ استهداف زر الاتصال الهاتفي الثاني (يحتوي على رابط tel) وإعطائه التدرج الأزرق */
+#section-contact a[href*="tel:"],
+#section-contact a:nth-of-type(2) {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(52, 152, 219, 0.2) !important;
+}
+
+#section-contact a[href*="tel:"]:hover,
+#section-contact a:nth-of-type(2):hover {
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.35) !important;
+}
+
+/* 5️⃣ تكبير الأيقونات المكتوبة داخل الروابط لتصبح متناسقة */
+#section-contact a i,
+section[id*="contact"] a i {
+    font-size: 1.25rem !important;
+}
+.hidden {
+    display: none !important;
+}
+/* تنسيق البطاقة الرئيسية التي تحوي بيانات الحساب */
+.profile-card {
+    background: #ffffff;
+    border-radius: 24px; /* زوايا دائرية جداً لتعطي طابعاً عصرياً */
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 400px; /* ليظهر بشكل مثالي على الموبايل */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* ظل ناعم جداً */
+    border: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+/* تنسيق النصوص داخل البطاقة */
+.profile-card h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.profile-card p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+/* تنسيق بسيط لمؤشر التحميل */
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #27ae60;
+}
+
+/* هذا الكلاس سيُستخدم لإخفاء العناصر بعد التحميل */
+.hidden {
+    display: none !important;
+}

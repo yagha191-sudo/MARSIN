@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://sitemaps.org">
+  
+  <!-- الصفحة الرئيسية للمشتل -->
+  <url>
+    <loc>https://netlify.app</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- صفحة الـ Admin إذا كنت تريد لجوجل أرشفتها -->
+  <url>
+    <loc>https://netlify.appadmin.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
